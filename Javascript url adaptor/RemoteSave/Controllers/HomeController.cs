@@ -14,13 +14,8 @@ namespace RemoteSave.Controllers
 {
     public class HomeController : Controller
     {
-       
-          
         public ActionResult Index()
         {
-            
-            
-            
             return View();
         }
         public ActionResult UrlDatasource(DataManagerRequest dm)
@@ -28,9 +23,6 @@ namespace RemoteSave.Controllers
             if (TreeData.tree.Count == 0)
                 TreeData.GetTree();
             IEnumerable DataSource = TreeData.tree;
-            IEnumerable src =null;
-            IEnumerable dest = null;
-            IEnumerable aggregate=null;
 
             DataOperations operation = new DataOperations();
             if (dm.Where != null && dm.Where.Count > 0)
@@ -38,7 +30,6 @@ namespace RemoteSave.Controllers
                 DataSource = operation.PerformFiltering(DataSource, dm.Where, "and");
             }
             List<string> str = new List<string>();
-            
 
             if (dm.Sorted != null && dm.Sorted.Count > 0)
             {
@@ -53,14 +44,8 @@ namespace RemoteSave.Controllers
             {
                 DataSource = operation.PerformTake(DataSource, dm.Take);
             }
-           
-
-
-
-                return dm.RequiresCounts ? Json(new { result = DataSource, count = count }) : Json(DataSource);
+            return dm.RequiresCounts ? Json(new { result = DataSource, count = count }) : Json(DataSource);
         }
-
-      
 
         public ActionResult Update(TreeData value)
         {
@@ -86,7 +71,7 @@ namespace RemoteSave.Controllers
                 }
             }
             i += FindChildRecords(relationalKey);
-            TreeData.tree.Insert(i +1, value);
+            TreeData.tree.Insert(i + 1, value);
         }
         public int FindChildRecords(int? id)
         {
@@ -101,7 +86,7 @@ namespace RemoteSave.Controllers
             }
             return count;
         }
-        
+
         public void Delete(int key)
         {
             TreeData.tree.Remove(TreeData.tree.Where(ds => ds.TaskID == key).FirstOrDefault());
@@ -131,59 +116,56 @@ namespace RemoteSave.Controllers
         }
 
     }
-   
-
-
-        public class TreeData
+    public class TreeData
+    {
+        public static List<TreeData> tree = new List<TreeData>();
+        [System.ComponentModel.DataAnnotations.Key]
+        public int TaskID { get; set; }
+        public string TaskName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public String Progress { get; set; }
+        public String Priority { get; set; }
+        public int Duration { get; set; }
+        public int? ParentItem { get; set; }
+        public bool? isParent { get; set; }
+        public TreeData() { }
+        public static List<TreeData> GetTree()
         {
-            public static List<TreeData> tree = new List<TreeData>();
-            [System.ComponentModel.DataAnnotations.Key]
-            public int TaskID { get; set; }
-            public string TaskName { get; set; }
-            public DateTime StartDate { get; set; }
-            public DateTime EndDate { get; set; }
-            public String Progress { get; set; }
-            public String Priority { get; set; }
-            public int Duration { get; set; }
-            public int? ParentItem { get; set; }
-            public bool? isParent { get; set; }
-            public TreeData() { }
-            public static List<TreeData> GetTree()
+            if (tree.Count == 0)
             {
-                if (tree.Count == 0)
-                {
-                    int root = -1;
+                int root = -1;
                 for (var t = 1; t <= 5; t++)
                 {
                     Random ran = new Random();
-                        string math = (ran.Next() % 3) == 0 ? "High" : (ran.Next() % 2) == 0 ? "Release Breaker" : "Critical";
-                        string progr = (ran.Next() % 3) == 0 ? "Started" : (ran.Next() % 2) == 0 ? "Open" : "In Progress";
-                        root++;
-                        int rootItem = tree.Count + root + 1;
-                        tree.Add(new TreeData() { TaskID = rootItem, TaskName = "Parent Task " + rootItem.ToString(), StartDate = new DateTime(1992, 06, 07), EndDate = new DateTime(1994, 08, 25), isParent = true, ParentItem = null, Progress = progr, Priority = math, Duration = (ran.Next(1, 50) *5) });
-                        int parent = tree.Count;
-                        for (var c = 0; c < 3; c++)
-                        {
-                            root++;
-                            string val = ((parent + c + 1) % 3 == 0) ? "Low" : "Critical";
-                            int parn = parent + c + 1;
-                            progr = (ran.Next() % 3) == 0 ? "In Progress" : (ran.Next() % 2) == 0 ? "Open" : "Validated";
-                            int iD = tree.Count + root + 1;
-                            tree.Add(new TreeData() { TaskID = iD, TaskName = "Child Task " + iD.ToString(), StartDate = new DateTime(1992, 06, 07), EndDate = new DateTime(1994, 08, 25), isParent = false, ParentItem = rootItem, Progress = progr, Priority = val, Duration = ran.Next(1, 50) });
-                    if ((((parent + c + 1) % 2) == 0))
+                    string math = (ran.Next() % 3) == 0 ? "High" : (ran.Next() % 2) == 0 ? "Release Breaker" : "Critical";
+                    string progr = (ran.Next() % 3) == 0 ? "Started" : (ran.Next() % 2) == 0 ? "Open" : "In Progress";
+                    root++;
+                    int rootItem = tree.Count + root + 1;
+                    tree.Add(new TreeData() { TaskID = rootItem, TaskName = "Parent Task " + rootItem.ToString(), StartDate = new DateTime(1992, 06, 07), EndDate = new DateTime(1994, 08, 25), isParent = true, ParentItem = null, Progress = progr, Priority = math, Duration = (ran.Next(1, 50) * 5) });
+                    int parent = tree.Count;
+                    for (var c = 0; c < 3; c++)
                     {
-                        int immParent = tree.Count;
-                        for (var s = 0; s < 2; s++)
+                        root++;
+                        string val = ((parent + c + 1) % 3 == 0) ? "Low" : "Critical";
+                        int parn = parent + c + 1;
+                        progr = (ran.Next() % 3) == 0 ? "In Progress" : (ran.Next() % 2) == 0 ? "Open" : "Validated";
+                        int iD = tree.Count + root + 1;
+                        tree.Add(new TreeData() { TaskID = iD, TaskName = "Child Task " + iD.ToString(), StartDate = new DateTime(1992, 06, 07), EndDate = new DateTime(1994, 08, 25), isParent = false, ParentItem = rootItem, Progress = progr, Priority = val, Duration = ran.Next(1, 50) });
+                        if ((((parent + c + 1) % 2) == 0))
                         {
-                            root++;
-                            string Prior = (immParent % 2 == 0) ? "Validated" : "Normal";
-                            tree.Add(new TreeData() { TaskID = tree.Count + root + 1, TaskName = "Sub Task " + (tree.Count + root + 1).ToString(), StartDate = new DateTime(1992, 06, 07), EndDate = new DateTime(1994, 08, 25), isParent = false, ParentItem = iD, Progress = (immParent % 2 == 0) ? "On Progress" : "Closed", Priority = Prior, Duration = ran.Next(1, 50) });
+                            int immParent = tree.Count;
+                            for (var s = 0; s < 2; s++)
+                            {
+                                root++;
+                                string Prior = (immParent % 2 == 0) ? "Validated" : "Normal";
+                                tree.Add(new TreeData() { TaskID = tree.Count + root + 1, TaskName = "Sub Task " + (tree.Count + root + 1).ToString(), StartDate = new DateTime(1992, 06, 07), EndDate = new DateTime(1994, 08, 25), isParent = false, ParentItem = iD, Progress = (immParent % 2 == 0) ? "On Progress" : "Closed", Priority = Prior, Duration = ran.Next(1, 50) });
+                            }
                         }
                     }
-                     }
                 }
-                }
-                return tree;
             }
+            return tree;
         }
     }
+}

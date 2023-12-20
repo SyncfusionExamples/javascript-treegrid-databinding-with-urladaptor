@@ -137,52 +137,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\ej2\bootstrap-dark.css" />
-    <Content Include="Content\ej2\bootstrap.css" />
-    <Content Include="Content\ej2\bootstrap4.css" />
-    <Content Include="Content\ej2\bootstrap5-dark.css" />
-    <Content Include="Content\ej2\bootstrap5.css" />
-    <Content Include="Content\ej2\compatibility\bootstrap.css" />
-    <Content Include="Content\ej2\compatibility\bootstrap4.css" />
-    <Content Include="Content\ej2\compatibility\fabric.css" />
-    <Content Include="Content\ej2\compatibility\highcontrast.css" />
-    <Content Include="Content\ej2\compatibility\material.css" />
-    <Content Include="Content\ej2\customized\material-dark.css" />
-    <Content Include="Content\ej2\customized\material.css" />
-    <Content Include="Content\ej2\customized\tailwind-dark.css" />
-    <Content Include="Content\ej2\customized\tailwind.css" />
-    <Content Include="Content\ej2\fabric-dark.css" />
-    <Content Include="Content\ej2\fabric.css" />
-    <Content Include="Content\ej2\fluent-dark.css" />
-    <Content Include="Content\ej2\fluent.css" />
-    <Content Include="Content\ej2\highcontrast.css" />
-    <Content Include="Content\ej2\material-dark.css" />
-    <Content Include="Content\ej2\material.css" />
-    <Content Include="Content\ej2\material3-dark.css" />
-    <Content Include="Content\ej2\material3.css" />
-    <Content Include="Content\ej2\tailwind-dark.css" />
-    <Content Include="Content\ej2\tailwind.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\ej2.min.js" />
-    <Content Include="Scripts\ej2\ej2-pdfviewer-lib\pdfium.js" />
-    <Content Include="Scripts\ej2\ej2-pdfviewer-lib\pdfium.wasm" />
-    <Content Include="Content\ej2\compatibility\material.scss" />
-    <Content Include="Content\ej2\compatibility\highcontrast.scss" />
-    <Content Include="Content\ej2\compatibility\fabric.scss" />
-    <Content Include="Content\ej2\compatibility\bootstrap4.scss" />
-    <Content Include="Content\ej2\compatibility\bootstrap.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\ej2\ej2.17.3.21.min.js" />
-    <Content Include="Scripts\ej2\ej2.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
@@ -206,18 +166,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\EditPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
@@ -254,5 +208,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
- 
 </Project>

@@ -132,7 +132,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\TreeData.cs" />
     <Compile Include="Models\TreeGridItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -56,7 +56,6 @@ namespace RemoteSave.Controllers
             val.Priority = value.Priority;
             val.Progress = value.Progress;
             return Json(value);
-
         }
 
         public void Insert(TreeData value, int relationalKey)
@@ -67,7 +66,6 @@ namespace RemoteSave.Controllers
                 if (TreeData.tree[i].TaskID == relationalKey)
                 {
                     break;
-
                 }
             }
             i += FindChildRecords(relationalKey);
@@ -102,7 +100,6 @@ namespace RemoteSave.Controllers
             }
         }
 
-
         public class CustomBind : TreeData
         {
             public TreeData parentItem;
@@ -114,7 +111,6 @@ namespace RemoteSave.Controllers
             public int key;
             public string action;
         }
-
     }
     public class TreeData
     {

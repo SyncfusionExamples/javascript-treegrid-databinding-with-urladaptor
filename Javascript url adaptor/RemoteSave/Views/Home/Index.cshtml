@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+﻿@using Syncfusion.EJ2
+@using Syncfusion.EJ2.Grids
+@using Syncfusion.EJ2.Navigations;
+
+
+
+
+<h2>RemoteData</h2>
+<div id="TreeGrid"></div>
+
+<script>
+    ej.treegrid.TreeGrid.Inject(ej.treegrid.Edit, ej.treegrid.Toolbar);
+    let data = new ej.data.DataManager({
+        url: "/Home/UrlDatasource",
+        updateUrl: "/Home/Update",
+        insertUrl: "/Home/Insert",
+        removeUrl: "Home/Delete",
+        batchUrl: "Home/Remove",
+        adaptor: new ej.data.UrlAdaptor()
+    });
+
+    let treeGridObj = new ej.treegrid.TreeGrid({
+        dataSource: data,
+        allowPaging: true,
+        idMapping: 'TaskID',
+        parentIdMapping: 'ParentItem',
+        hasChildMapping: "isParent",
+
+        treeColumnIndex: 1,
+        actionFailure: {},
+        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+        editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Row', newRowPosition: 'Below' },
+        columns: [
+            { field: 'TaskID', isPrimaryKey: true, headerText: 'Task ID', width: 120 },
+            { field: 'TaskName', width: 140, headerText: 'TaskName' },
+            { field: 'Duration', width: 140, headerText: 'Duration' }
+        ],
+
+    });
+    treeGridObj.appendTo('#TreeGrid');
+</script>
+
+
+
